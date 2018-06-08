@@ -1,0 +1,6 @@
+bin/
+.platform_private_key
+*.tfstate
+*.tfstate.backup
+.terraform/
+lock.json
