@@ -9,3 +9,7 @@
 ### OpenShiftのインストール
 
 [OpenShiftのインストール](/docs/install.md)
+
+### OpenShiftにノードを追加する
+
+[ノードの追加](/docs/add_node.md)
