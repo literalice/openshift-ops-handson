@@ -10,6 +10,10 @@
 
 [OpenShiftのインストール](/docs/install.md)
 
+### OpenShiftクラスタのヘルスチェック
+
+[OpenShiftのヘルスチェック](/docs/cluster_health.md)
+
 ### OpenShiftクラスタのメトリクスを確認する
 
 [OpenShiftクラスタのメトリクス](/docs/metrics.md)

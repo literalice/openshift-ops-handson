@@ -143,29 +143,3 @@ xx.xx.xx.xx master.ocp.example.com
 以下にアクセスして、OpenShiftのコンソール画面が出てくることを確認してください。
 
 https://master.ocp.example.com:8443
-
-## アプリケーションがデプロイできることを確認する
-
-### プロジェクトの作成
-
-OpenShiftのコンソール画面から、「Create Project」を選択し、「playground」と入力してアプリケーションを作成する
-
-### アプリケーションのデプロイ
-
-1. playgroundプロジェクトの画面から、「Search Catalog」に「node」と入力し、「Node.js」を選択する。
-2. Application Nameに「hello」を、Git Repositoryに「Try Sample Repository」をクリックしてソースコードのURLの入力する。
-3. 「Create」ボタンを押下してプロジェクトをデプロイする。
-
-### アプリケーションへアクセスできるよう、hostsファイルを登録する
-
-今回はmasterサーバーにRouterがデプロイされているので、masterサーバーのIPをhostsファイルに登録する。
-（Routeをmasterサーバー以外の独立したInfraサーバーにデプロイしている場合は、InfraサーバーのIPを登録する）
-
-```bash
-xx.xx.xx.xx hello-playground.app.ocp.example.com
-```
-
-### アプリケーションがデプロイされていることを確認
-
-1. ブラウザで http://hello-playground.app.ocp.example.com へアクセスする
-2. 踏み台からmasterサーバーに入り、 `oc get pods -n playground` コマンドを実行して `hello` アプリケーションが表示されることを確認する
