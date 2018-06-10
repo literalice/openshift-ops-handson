@@ -13,3 +13,7 @@
 ### OpenShiftにノードを追加する
 
 [ノードの追加](/docs/add_node.md)
+
+### OpenShiftからノードを削除する
+
+[ノードの追加](/docs/delete_node.md)
