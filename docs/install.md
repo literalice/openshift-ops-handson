@@ -71,6 +71,7 @@ OSEv3:
   vars:
     ansible_user: cloud-user
     ansible_become: true
+    oreg_url: "registry.access.redhat.com/openshift3/ose-${component}:${version}"
     openshift_deployment_type: openshift-enterprise
     openshift_release: "v3.9"
     containerized: true
