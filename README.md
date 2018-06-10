@@ -10,6 +10,10 @@
 
 [OpenShiftのインストール](/docs/install.md)
 
+### OpenShiftクラスタのメトリクスを確認する
+
+[OpenShiftクラスタのメトリクス](/docs/metrics.md)
+
 ### OpenShiftにノードを追加する
 
 [ノードの追加](/docs/add_node.md)
