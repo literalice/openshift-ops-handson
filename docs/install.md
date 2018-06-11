@@ -38,7 +38,7 @@ export TF_VAR_platform_name=xxx
      --enable="rhel-7-server-ansible-2.4-rpms"
 
     # 必要なツールをインストールする
-    yum -y install atomic-openshift-utils-3.9.27-1.git.0.52e35b5.el7 atomic-openshift-clients-3.9.27-1.git.0.52e35b5.el7
+    yum -y install atomic-openshift-utils atomic-openshift-clients
     
     # rootからログアウト
     exit
@@ -110,9 +110,6 @@ OSEv3:
     openshift_master_default_subdomain: app.ocp.example.com
     openshift_cloudprovider_kind: aws
     openshift_clusterid: xxx
-    openshift_hosted_logging_deploy: true
-    openshift_logging_es_pvc_dynamic: true
-    openshift_logging_es_memory_limit: 512M
 ```
 
 ## OpenShiftインストール用に全てのノードでSubscriptionを登録する
