@@ -2,5 +2,6 @@ bin/terraform
 .platform_private_key
 *.tfstate
 *.tfstate.backup
+*.tfstate.lock.info
 .terraform/
 lock.json

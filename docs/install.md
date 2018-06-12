@@ -1,5 +1,7 @@
 # OpenShiftのインストール
 
+https://docs.openshift.com/container-platform/3.9/install_config/install/advanced_install.html
+
 ## インストール環境の構築
 
 以下の手順で、OpenShiftをインストールするためのインフラ(VM、ネットワークなど)を構築します。
@@ -22,6 +24,7 @@ export TF_VAR_platform_name= # 一意なプラットフォーム名を設定す�
     ```bash
     # ssh鍵の出力
     ../bin/terraform output platform_private_key > .platform_private_key
+    chmod 600 .platform_private_key
     # sshでログイン
     ssh `../bin/terraform output bastion_ssh` -i ./.platform_private_key
     ```
@@ -32,7 +35,9 @@ export TF_VAR_platform_name= # 一意なプラットフォーム名を設定す�
     sudo su -
     # RHNのユーザー名とパスワードを入力
     subscription-manager register
-    # OpenShiftサブスクリプションのPool IDを入力
+    # 所持しているOpenShiftサブスクリプションの検索
+    subscription-manager list --available --matches "*OpenShift*"
+    # 上記結果からOpenShiftサブスクリプションのPool IDを取得して入力
     subscription-manager attach --pool=XXXXXXXXXXX
     # 必要なリポジトリだけを有効化する
     subscription-manager repos --disable="*"
@@ -51,6 +56,7 @@ export TF_VAR_platform_name= # 一意なプラットフォーム名を設定す�
     ansible-playbook --version
     ls /usr/share/ansible/openshift-ansible
     # => inventory  playbooks  roles
+    oc version
     ```
 
 ## OpenShiftインストール用にInventory Fileを作成する
@@ -131,13 +137,21 @@ ansible all -i ./inventory.yml -a "subscription-manager attach --pool=xxx"
 ## OpenShiftをインストールする
 
 ```bash
-ansible-playbook -i ~/inventory.yml /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
-ansible-playbook -i ~/inventory.yml /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
+ansible-playbook -i ./inventory.yml /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
+ansible-playbook -i ./inventory.yml /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
 ```
 
 ## OpenShiftにアクセスできるよう、hostsファイルを登録する
 
+ローカルマシンのhostsファイルを編集し、OpenShiftの管理コンソールにアクセス出来るようにします。
+
+プロジェクトのディレクトリで `../bin/terraform output hosts_file` を実行し、hostsに追加する内容を確認できます。
+
 ```bash
+../bin/terraform output hosts_file
+# => xx.xx.xx.xx master.ocp.example.com
+
+sudo vi /etc/hosts
 xx.xx.xx.xx master.ocp.example.com
 ```
 
@@ -146,3 +160,6 @@ xx.xx.xx.xx master.ocp.example.com
 以下にアクセスして、OpenShiftのコンソール画面が出てくることを確認してください。
 
 https://master.ocp.example.com:8443
+
+ログインのユーザー名、パスワードは admin/adminを使用してください。
+(任意のユーザー名、パスワードでログイン出来ます。)
