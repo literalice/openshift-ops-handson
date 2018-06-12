@@ -21,7 +21,7 @@
 
 ### OpenShiftクラスタに管理ユーザーを追加する
 
-TBD
+[OpenShiftのユーザー権限](/docs/add_admin.md)
 
 ### OpenShiftクラスタのメトリクスを確認する
 
