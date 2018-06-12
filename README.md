@@ -49,7 +49,15 @@ TBD
 
 ## 後片付け
 
-プロジェクトのディレクトリで、以下コマンドを実行してください。
+### サブスクリプションの解除
+
+踏み台で以下コマンドを実行し、システムの登録を解除します。
+
+```bash
+ansible all -i ./inventory.yml -a "subscription-manager unregister"
+```
+
+ローカルマシンに戻り、プロジェクトのディレクトリで以下コマンドを実行してください。
 
 ```bash
 ../bin/terraform destroy

@@ -4,7 +4,7 @@ https://docs.openshift.com/container-platform/3.9/admin_guide/manage_nodes.html#
 
 ## 現状の確認
 
-踏み台からmasterにsshログインし、現時点のノードの数を確認する
+踏み台からmasterにsshログインし、現時点のノードの数を確認します。
 
 ```bash
 [cloud-user@ip-xx-xx-xx-xx ~]$ oc get nodes
@@ -18,24 +18,29 @@ ip-xx-xx-xx-xx.ap-northeast-1.compute.internal   Ready     master    1h        v
 
 https://docs.openshift.com/container-platform/3.9/admin_guide/manage_nodes.html#evacuating-pods-on-nodes
 
-踏み台ホストに入り、以下のコマンドを実行してノードからアプリケーションコンテナを追い出す
+踏み台に入り、以下のコマンドを実行してノードからアプリケーションコンテナを追い出してください。
 
 ```bash
+ssh `terraform output bastion_ssh` -i ./.platform_private_key
+
 oc adm drain ip-xxx.xxx.xxx.xxx --delete-local-data
 ```
 
 ## 追い出されたアプリケーションが新しいノードに移動され、アクセスできることを確認する
 
-http://nginx-example-playground.app.ocp.example.com
+http://hello-playground.app.ocp.example.com
 
-にアクセスし、問題なくアクセス出来ていることを確認する
+にアクセスし、問題なくアクセス出来ていることを確認します。
 
 ## ノードを削除する
 
-踏み台ホストで以下のコマンドを実行し、ノードをクラスタから削除する
+踏み台で以下のコマンドを実行し、ノードをクラスタから削除してください。
 
 ```bash
-[cloud-user@ip-xx-xx-xx-xx ~]$ oc delete node ip-xx-xx-xx-xx.ap-northeast-1.compute.internal
+ssh `terraform output bastion_ssh` -i ./.platform_private_key
+
+oc delete node ip-xx-xx-xx-xx.ap-northeast-1.compute.internal
+
 node "ip-xx-xx-xx-xx.ap-northeast-1.compute.internal" deleted
 ```
 
@@ -48,6 +53,16 @@ ip-xx-xx-xx-xx.ap-northeast-1.compute.internal   Ready     compute   1h        v
 ip-xx-xx-xx-xx.ap-northeast-1.compute.internal   Ready     master    2h        v1.9.1+a0ce1bc657
 ```
 
+## 削除したノードでサブスクリプションを解除する
+
+踏み台で以下のコマンドを実行し、削除したノードのシステム登録を解除します。
+
+```bash
+ssh `terraform output bastion_ssh` -i ./.platform_private_key
+
+ansible compute1.ocp.internal -i ./inventory.yml -a "subscription-manager unregister"
+```
+
 ## ノードのVMを削除する
 
-AWSのマネージメントコンソールからVMを削除する
+AWSのマネージメントコンソールから削除したノードのVMをシャットダウンできます。
