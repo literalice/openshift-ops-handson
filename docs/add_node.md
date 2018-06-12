@@ -78,7 +78,11 @@ ansible compute1.ocp.internal -i ./inventory.yml -a "subscription-manager attach
 
 ## ノード追加用のAnsible playbookを実行する
 
+```bash
+ssh `terraform output bastion_ssh` -i ./.platform_private_key
+
 ansible-playbook -i ~/inventory.yml /usr/share/ansible/openshift-ansible/playbooks/openshift-node/scaleup.yml
+```
 
 ## ノードが追加されたことを確認する
 
