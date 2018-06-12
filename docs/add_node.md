@@ -4,12 +4,10 @@ https://docs.openshift.com/container-platform/3.9/install_config/adding_hosts_to
 
 ## 現状の確認
 
-踏み台からmasterにsshログインし、現時点のノードの数を確認する
+踏み台にsshログインし、現時点のノードの数を確認する
 
 ```bash
-[ec2-user@ip-10-0-29-82 ~]$ ssh cloud-user@master.ocp.internal
-
-[cloud-user@ip-xx-xx-xx-xx ~]$ oc get nodes
+[ec2-user@ip-10-0-29-82 ~]$ oc get nodes
 NAME                                             STATUS    ROLES     AGE       VERSION
 ip-xx-xx-xx-xx.ap-northeast-1.compute.internal   Ready     compute   1h        v1.9.1+a0ce1bc657
 ip-xx-xx-xx-xx.ap-northeast-1.compute.internal   Ready     master    1h        v1.9.1+a0ce1bc657

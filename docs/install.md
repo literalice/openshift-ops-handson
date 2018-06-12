@@ -1,6 +1,6 @@
 # OpenShiftのインストール
 
-## インストール環境の構築
+## インストール環境の構築
 
 以下の手順で、OpenShiftをインストールするためのインフラ(VM、ネットワークなど)を構築します。
 
@@ -12,6 +12,10 @@ export TF_VAR_platform_name= # 一意なプラットフォーム名を設定す�
 ../bin/terraform apply
 ```
 
+これにより、空の(OpenShiftが入っていない)インフラが以下の構成で作成されます。
+
+![Initial Infrastructure](/docs/images/initial_infrastructure.png)
+
 ## OpenShiftインストールのためのツールをインストール
 
 1. bastionにログインする
@@ -22,15 +26,15 @@ export TF_VAR_platform_name= # 一意なプラットフォーム名を設定す�
     ssh `../bin/terraform output bastion_ssh` -i ./.platform_private_key
     ```
     
-2. OpenShiftインストールに必要なツールをインストールする
+2. OpenShiftインストールに必要なツールをインストールする
     ```bash
     # サブスクリプションの登録
     sudo su -
     # RHNのユーザー名とパスワードを入力
     subscription-manager register
-    # OpenShiftサブスクリプションのPool IDを入力
+    # OpenShiftサブスクリプションのPool IDを入力
     subscription-manager attach --pool=XXXXXXXXXXX
-    # 必要なリポジトリだけを有効化する
+    # 必要なリポジトリだけを有効化する
     subscription-manager repos --disable="*"
     subscription-manager repos --enable="rhel-7-server-rpms" \
      --enable="rhel-7-server-ose-3.9-rpms" \
@@ -53,7 +57,7 @@ export TF_VAR_platform_name= # 一意なプラットフォーム名を設定す�
 
 以下ファイルを、 `~/inventory.yml` に作成する
 
-** # --REPLACE--とあるところは環境に合わせて変更してください **
+**# --REPLACE--とあるところは環境に合わせて変更してください**
 
 ```yaml
 OSEv3:
@@ -77,7 +81,7 @@ OSEv3:
     ansible_become: true
     oreg_url: "registry.access.redhat.com/openshift3/ose-${component}:${version}"
     openshift_deployment_type: openshift-enterprise
-    openshift_release: "v3.9"
+    openshift_release: "v3.9.27"
     containerized: true
     openshift_master_identity_providers:
       - name: 'test_identity_provider'
@@ -120,8 +124,8 @@ OSEv3:
 export ANSIBLE_HOST_KEY_CHECKING=False
 export ANSIBLE_FORKS=20
 
-ansible all -i ./inventory.yml --become -a "subscription-manager register --username=xxx --password=xxx"
-ansible all -i ./inventory.yml --become -a "subscription-manager attach --pool=xxx"
+ansible all -i ./inventory.yml -a "subscription-manager register --username=xxx --password=xxx"
+ansible all -i ./inventory.yml -a "subscription-manager attach --pool=xxx"
 ```
 
 ## OpenShiftをインストールする
