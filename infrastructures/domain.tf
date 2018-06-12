@@ -23,3 +23,20 @@ resource "aws_route53_record" "compute" {
   ttl     = "60"
   records = ["${element(aws_instance.computes.*.private_ip, count.index)}"]
 }
+
+resource "aws_route53_zone" "public" {
+  name   = "ocp.example.com"
+  vpc_id = "${aws_vpc.platform.id}"
+
+  tags = "${map(
+    "kubernetes.io/cluster/${var.platform_name}", "owned"
+  )}"
+}
+
+resource "aws_route53_record" "master_public" {
+  zone_id = "${aws_route53_zone.public.zone_id}"
+  name    = "master.ocp.example.com"
+  type    = "A"
+  ttl     = "60"
+  records = ["${aws_instance.masters.*.private_ip}"]
+}
