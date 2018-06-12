@@ -5,6 +5,8 @@
 このハンズオンを実施するには、ローカルマシンに `ssh` クライアントと [terraform](https://www.terraform.io/) が必要です。
 導入していない場合は以下からファイルをダウンロードして、`bin` ディレクトリに展開してください。
 
+https://www.terraform.io/
+
 ## ハンズオン
 
 ### OpenShiftのインストール
@@ -17,7 +19,7 @@
 
 ### OpenShiftクラスタに管理ユーザーを追加する
 
-[管理ユーザー追加](/docs/add_admin.md)
+TBD
 
 ### OpenShiftクラスタのメトリクスを確認する
 

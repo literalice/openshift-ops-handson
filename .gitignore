@@ -1,4 +1,4 @@
-bin/
+bin/terraform
 .platform_private_key
 *.tfstate
 *.tfstate.backup
