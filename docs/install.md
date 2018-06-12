@@ -7,7 +7,7 @@
 ```bash
 cd infrastructures/
 
-export TF_VAR_platform_name=xxx
+export TF_VAR_platform_name= # 一意なプラットフォーム名を設定するする
 ../bin/terraform init
 ../bin/terraform apply
 ```
@@ -52,6 +52,8 @@ export TF_VAR_platform_name=xxx
 ## OpenShiftインストール用にInventory Fileを作成する
 
 以下ファイルを、 `~/inventory.yml` に作成する
+
+** # --REPLACE--とあるところは環境に合わせて変更してください **
 
 ```yaml
 OSEv3:
@@ -109,7 +111,7 @@ OSEv3:
     openshift_master_cluster_public_hostname: master.ocp.example.com
     openshift_master_default_subdomain: app.ocp.example.com
     openshift_cloudprovider_kind: aws
-    openshift_clusterid: xxx
+    openshift_clusterid: # --REPLACE-- TF_VAR_platform_nameと同一の値を設定する
 ```
 
 ## OpenShiftインストール用に全てのノードでSubscriptionを登録する

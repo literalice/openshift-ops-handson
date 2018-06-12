@@ -2,10 +2,12 @@
 
 ## 環境構築
 
-このハンズオンを実施するには、ローカルマシンに `ssh` クライアントと [terraform](https://www.terraform.io/) が必要です。
-導入していない場合は以下からファイルをダウンロードして、`bin` ディレクトリに展開してください。
+このハンズオンを実施するには、以下の用意が必要です。
 
-https://www.terraform.io/
+* `ssh` クライアント
+* [terraform](https://www.terraform.io/)
+* RHN( https://www.redhat.com/en )のアカウント
+* OCPの評価用サブスクリプション( https://www.redhat.com/wapps/eval/index.html?evaluation_id=1026 )
 
 ## ハンズオン
 
