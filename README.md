@@ -6,10 +6,45 @@
 
 * `ssh` クライアント
 * [terraform](https://www.terraform.io/)
+* AWS( https://aws.amazon.com )のアカウント
 * RHN( https://www.redhat.com/en )のアカウント
 * OCPの評価用サブスクリプション( https://www.redhat.com/wapps/eval/index.html?evaluation_id=1026 )
 
-また、このプロジェクトをローカルマシンにgit cloneするか、「Download ZIP」でダウンロードして適当なディレクトリに解凍してください。
+### ローカルマシンの準備
+
+#### 本ハンズオンプロジェクトのダウンロード
+
+このプロジェクトをローカルマシンにgit cloneするか、「Download ZIP」でダウンロードして適当なディレクトリに解凍してください。
+
+#### terraform コマンドにパスを通す
+
+ダウンロードした `terraform` コマンドを、パスの通っている場所に配置してください。
+
+```bash
+terraform version
+```
+
+任意のディレクトリで上記コマンドを実行し、結果が出力されることを確認します。
+
+#### AWS認証情報の設定
+
+AWSへアクセスできるよう、認証情報を設定します。
+前もってAWSのアカウントを作成し、AWSのアクセスキーIDとシークレットアクセスキーを用意してください。
+
+https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-environment.html
+
+* Windows
+  ```
+  set AWS_ACCESS_KEY_ID=xxx
+  set AWS_SECRET_ACCESS_KEY=xxx
+  set AWS_DEFAULT_REGION=ap-northeast-1
+  ```
+* Linux, macOS, or Unix
+  ```
+  export AWS_ACCESS_KEY_ID=xxx
+  export AWS_SECRET_ACCESS_KEY=xxx
+  export AWS_DEFAULT_REGION=ap-northeast-1
+  ```
 
 ## ハンズオン
 
@@ -59,5 +94,5 @@ sudo subscription-manager unregister
 ローカルマシンに戻り、プロジェクトのディレクトリで以下コマンドを実行してください。
 
 ```bash
-../bin/terraform destroy
+terraform destroy
 ```
