@@ -9,6 +9,8 @@
 * RHN( https://www.redhat.com/en )のアカウント
 * OCPの評価用サブスクリプション( https://www.redhat.com/wapps/eval/index.html?evaluation_id=1026 )
 
+また、このプロジェクトをローカルマシンにgit cloneするか、「Download ZIP」でダウンロードして適当なディレクトリに解凍してください。
+
 ## ハンズオン
 
 ### OpenShiftのインストール
@@ -51,6 +53,7 @@
 
 ```bash
 ansible all -i ./inventory.yml -a "subscription-manager unregister"
+sudo subscription-manager unregister
 ```
 
 ローカルマシンに戻り、プロジェクトのディレクトリで以下コマンドを実行してください。
