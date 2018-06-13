@@ -29,12 +29,12 @@ data "aws_iam_policy_document" "master" {
 }
 
 resource "aws_iam_role" "master" {
-    name = "${var.platform_name}-master-role"
+    name = "${local.platform_id}-master-role"
     assume_role_policy = "${data.aws_iam_policy_document.ec2.json}"
 }
 
 resource "aws_iam_role_policy" "master" {
-    name = "${var.platform_name}-master-policy"
+    name = "${local.platform_id}-master-policy"
     role = "${aws_iam_role.master.id}"
     policy = "${data.aws_iam_policy_document.master.json}"
 }

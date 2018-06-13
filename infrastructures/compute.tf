@@ -1,5 +1,5 @@
 resource "aws_iam_instance_profile" "compute" {
-  name = "${var.platform_name}-compute-profile"
+  name = "${local.platform_id}-compute-profile"
   role = "${aws_iam_role.compute.name}"
 }
 
@@ -23,8 +23,8 @@ resource "aws_instance" "computes" {
   user_data = "${file("${path.module}/resources/node-init.yml")}"
 
   tags = "${map(
-    "Name", "${var.platform_name}-compute${count.index}",
-    "kubernetes.io/cluster/${var.platform_name}", "owned",
+    "Name", "${local.platform_id}-compute${count.index}",
+    "kubernetes.io/cluster/${local.platform_id}", "owned",
     "Role", "compute"
   )}"
 }

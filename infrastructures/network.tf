@@ -7,8 +7,8 @@ resource "aws_subnet" "public" {
   cidr_block = "${element(var.public_cidrs, count.index)}"
 
   tags = "${map(
-    "kubernetes.io/cluster/${var.platform_name}", "owned",
-    "Name", "${var.platform_name}-public-${count.index}"
+    "kubernetes.io/cluster/${local.platform_id}", "owned",
+    "Name", "${local.platform_id}-public-${count.index}"
   )}"
 }
 
@@ -16,8 +16,8 @@ resource "aws_subnet" "public" {
 resource "aws_internet_gateway" "public_gw" {
   vpc_id = "${aws_vpc.platform.id}"
   tags = "${map(
-    "kubernetes.io/cluster/${var.platform_name}", "owned",
-    "Name", "${var.platform_name}-public-gw"
+    "kubernetes.io/cluster/${local.platform_id}", "owned",
+    "Name", "${local.platform_id}-public-gw"
   )}"
 }
 
@@ -26,8 +26,8 @@ resource "aws_internet_gateway" "public_gw" {
 resource "aws_route_table" "public" {
   vpc_id = "${aws_vpc.platform.id}"
   tags = "${map(
-    "kubernetes.io/cluster/${var.platform_name}", "owned",
-    "Name", "${var.platform_name}-public-rt"
+    "kubernetes.io/cluster/${local.platform_id}", "owned",
+    "Name", "${local.platform_id}-public-rt"
   )}"
 }
 

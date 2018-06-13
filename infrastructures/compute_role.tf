@@ -14,12 +14,12 @@ data "aws_iam_policy_document" "compute" {
 }
 
 resource "aws_iam_role" "compute" {
-  name               = "${var.platform_name}-compute-role"
+  name               = "${local.platform_id}-compute-role"
   assume_role_policy = "${data.aws_iam_policy_document.ec2.json}"
 }
 
 resource "aws_iam_role_policy" "compute" {
-  name   = "${var.platform_name}-compute-policy"
+  name   = "${local.platform_id}-compute-policy"
   role   = "${aws_iam_role.compute.id}"
   policy = "${data.aws_iam_policy_document.compute.json}"
 }

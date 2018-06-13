@@ -8,6 +8,6 @@ data "tls_public_key" "platform" {
 }
 
 resource "aws_key_pair" "platform" {
-  key_name   = "${var.platform_name}"
+  key_name   = "${local.platform_id}"
   public_key = "${data.tls_public_key.platform.public_key_openssh}"
 }

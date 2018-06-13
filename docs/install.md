@@ -9,9 +9,9 @@ https://docs.openshift.com/container-platform/3.9/install_config/install/advance
 ```bash
 cd infrastructures/
 
-export TF_VAR_platform_name= # 一意なプラットフォーム名を設定するする
-../bin/terraform init
-../bin/terraform apply
+export TF_VAR_platform_name= # 一意なプラットフォーム名を設定する
+terraform init
+terraform apply
 ```
 
 これにより、空の(OpenShiftが入っていない)インフラが以下の構成で作成されます。
@@ -23,10 +23,10 @@ export TF_VAR_platform_name= # 一意なプラットフォーム名を設定す�
 1. bastionにログインする
     ```bash
     # ssh鍵の出力
-    ../bin/terraform output platform_private_key > .platform_private_key
+    terraform output platform_private_key > .platform_private_key
     chmod 600 .platform_private_key
     # sshでログイン
-    ssh `../bin/terraform output bastion_ssh` -i ./.platform_private_key
+    ssh `terraform output bastion_ssh` -i ./.platform_private_key
     ```
     
 2. OpenShiftインストールに必要なツールをインストールする
@@ -39,7 +39,7 @@ export TF_VAR_platform_name= # 一意なプラットフォーム名を設定す�
     subscription-manager list --available --matches "*OpenShift*"
     # 上記結果からOpenShiftサブスクリプションのPool IDを取得して入力
     subscription-manager attach --pool=XXXXXXXXXXX
-    # 必要なリポジトリだけを有効化する
+    # 必要なリポジトリだけを有効化する
     subscription-manager repos --disable="*"
     subscription-manager repos --enable="rhel-7-server-rpms" \
      --enable="rhel-7-server-ose-3.9-rpms" \
@@ -145,10 +145,10 @@ ansible-playbook -i ./inventory.yml /usr/share/ansible/openshift-ansible/playboo
 
 ローカルマシンのhostsファイルを編集し、OpenShiftの管理コンソールにアクセス出来るようにします。
 
-プロジェクトのディレクトリで `../bin/terraform output hosts_file` を実行し、hostsに追加する内容を確認できます。
+プロジェクトのディレクトリで `terraform output hosts_file` を実行し、hostsに追加する内容を確認できます。
 
 ```bash
-../bin/terraform output hosts_file
+terraform output hosts_file
 # => xx.xx.xx.xx master.ocp.example.com
 
 sudo vi /etc/hosts

@@ -1,5 +1,5 @@
 resource "aws_iam_instance_profile" "master" {
-  name = "${var.platform_name}-master-profile"
+  name = "${local.platform_id}-master-profile"
   role = "${aws_iam_role.master.name}"
 }
 
@@ -27,8 +27,8 @@ resource "aws_instance" "masters" {
   iam_instance_profile = "${aws_iam_instance_profile.master.name}"
 
   tags = "${map(
-    "Name", "${var.platform_name}-master",
-    "kubernetes.io/cluster/${var.platform_name}", "owned",
+    "Name", "${local.platform_id}-master",
+    "kubernetes.io/cluster/${local.platform_id}", "owned",
     "Role", "master"
   )}"
 }

@@ -3,7 +3,7 @@ resource "aws_route53_zone" "private" {
   vpc_id = "${aws_vpc.platform.id}"
 
   tags = "${map(
-    "kubernetes.io/cluster/${var.platform_name}", "owned"
+    "kubernetes.io/cluster/${local.platform_id}", "owned"
   )}"
 }
 
@@ -29,7 +29,7 @@ resource "aws_route53_zone" "public" {
   vpc_id = "${aws_vpc.platform.id}"
 
   tags = "${map(
-    "kubernetes.io/cluster/${var.platform_name}", "owned"
+    "kubernetes.io/cluster/${local.platform_id}", "owned"
   )}"
 }
 

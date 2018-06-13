@@ -1,6 +1,6 @@
 resource "aws_security_group" "node" {
-  name        = "${var.platform_name}-node"
-  description = "Cluster node group for ${var.platform_name}"
+  name        = "${local.platform_id}-node"
+  description = "Cluster node group for ${local.platform_id}"
 
   ingress {
     from_port       = 0
@@ -24,8 +24,8 @@ resource "aws_security_group" "node" {
   }
 
   tags = "${map(
-    "kubernetes.io/cluster/${var.platform_name}", "owned",
-    "Name", "${var.platform_name}-node",
+    "kubernetes.io/cluster/${local.platform_id}", "owned",
+    "Name", "${local.platform_id}-node",
     "Role", "node",
     )}"
 

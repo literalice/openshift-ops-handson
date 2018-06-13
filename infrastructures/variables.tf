@@ -1,5 +1,9 @@
 variable "platform_name" {}
 
+locals {
+  platform_id = "${terraform.workspace == "default" ? var.platform_name : "${var.platform_name}-${terraform.workspace}"}"
+}
+
 variable "platform_cidr" {
   default = "10.0.0.0/16"
 }

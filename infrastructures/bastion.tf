@@ -1,5 +1,5 @@
 resource "aws_iam_instance_profile" "bastion" {
-  name = "${var.platform_name}-bastion-profile"
+  name = "${local.platform_id}-bastion-profile"
   role = "${aws_iam_role.bastion.name}"
 }
 
@@ -19,7 +19,7 @@ resource "aws_instance" "bastion" {
   }
 
   tags = "${map(
-    "Name", "${var.platform_name}-bastion",
+    "Name", "${local.platform_id}-bastion",
     "Role", "bastion"
   )}"
 }

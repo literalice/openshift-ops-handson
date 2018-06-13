@@ -1,6 +1,6 @@
 resource "aws_security_group" "master_public" {
-  name        = "${var.platform_name}-master-public"
-  description = "Master public group for ${var.platform_name}"
+  name        = "${local.platform_id}-master-public"
+  description = "Master public group for ${local.platform_id}"
 
   ingress {
     from_port   = 8443
@@ -17,8 +17,8 @@ resource "aws_security_group" "master_public" {
   }
 
   tags = "${map(
-    "kubernetes.io/cluster/${var.platform_name}", "owned",
-    "Name", "${var.platform_name}-master-public"
+    "kubernetes.io/cluster/${local.platform_id}", "owned",
+    "Name", "${local.platform_id}-master-public"
   )}"
 
   vpc_id = "${aws_vpc.platform.id}"

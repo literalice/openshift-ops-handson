@@ -24,7 +24,7 @@ variable "compute_node_count" {
 ```
 
 ```bash
-../bin/terraform apply
+terraform apply
 ```
 
 以下のようにインスタンスがインフラに追加されます。このインスタンスを、OpenShiftクラスタに参加させます。

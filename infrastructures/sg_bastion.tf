@@ -1,6 +1,6 @@
 resource "aws_security_group" "bastion" {
-  name        = "${var.platform_name}-bastion"
-  description = "Bastion group for ${var.platform_name}"
+  name        = "${local.platform_id}-bastion"
+  description = "Bastion group for ${local.platform_id}"
 
   ingress {
     from_port   = 22
@@ -17,8 +17,8 @@ resource "aws_security_group" "bastion" {
   }
 
   tags = "${map(
-    "kubernetes.io/cluster/${var.platform_name}", "owned",
-    "Name", "${var.platform_name}-bastion",
+    "kubernetes.io/cluster/${local.platform_id}", "owned",
+    "Name", "${local.platform_id}-bastion",
     "Role", "bastion"
   )}"
 
