@@ -14,7 +14,7 @@ OpenShiftのコンソール画面から、「Create Project」を選択し、「
 
 ### アプリケーションのデプロイ
 
-アプリケーションがデプロイできることを確認します。
+アプリケーションがデプロイできることを確認します。
 
 1. OpenShiftのコンソール画面から、「Search Catalog」に「node」と入力し、「Node.js」を選択する。 ![Search Node.js](/docs/images/search_catalog_nodejs.png)
 2. Application Nameに「hello」を、Git Repositoryに「Try Sample Repository」をクリックしてソースコードのURLの入力する。 ![Search Node.js](/docs/images/create_nodejs_app.png)

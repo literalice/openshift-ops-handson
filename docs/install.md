@@ -145,7 +145,7 @@ ansible-playbook -i ./inventory.yml /usr/share/ansible/openshift-ansible/playboo
 
 ローカルマシンのhostsファイルを編集し、OpenShiftの管理コンソールにアクセス出来るようにします。
 
-プロジェクトのディレクトリで `../bin/terraform output hosts_file` を実行し、hostsに追加する内容を確認できます。
+プロジェクトのディレクトリで `../bin/terraform output hosts_file` を実行し、hostsに追加する内容を確認できます。
 
 ```bash
 ../bin/terraform output hosts_file
