@@ -8,7 +8,7 @@
 * [terraform](https://www.terraform.io/)
 * AWS( https://aws.amazon.com )のアカウント
 * RHN( https://www.redhat.com/en )のアカウント
-* OCPの評価用サブスクリプション( https://www.redhat.com/wapps/eval/index.html?evaluation_id=1026 )
+* OCPの評価用サブスクリプション( https://www.openshift.com/products/container-platform/trial/ )
 
 ### ローカルマシンの準備
 
